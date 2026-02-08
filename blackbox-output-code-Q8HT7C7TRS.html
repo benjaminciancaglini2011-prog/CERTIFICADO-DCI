@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Averías - Edenor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Azul claro */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #003366; /* Azul oscuro como Edenor */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+            height: auto;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #003366;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005599;
+        }
+        .auto-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/150x50/003366/FFFFFF?text=Edenor+Logo" alt="Logo Edenor"> <!-- Reemplaza con URL real del logo -->
+        <h1>Reporte de Averías Eléctricas</h1>
+    </header>
+    
+    <div class="container">
+        <p>Complete el formulario para reportar una avería o consulta. Todos los campos son obligatorios.</p>
+        
+        <div class="auto-buttons">
+            <button type="button" onclick="autoFill()">Auto-llenar Ejemplo</button>
+            <button type="button" onclick="autoSubmit()">Enviar Automáticamente</button>
+        </div>
+        
+        <form id="reportForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required>
+            
+            <label for="direccion">Dirección completa:</label>
+            <input type="text" id="direccion" name="direccion" required>
+            
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+            
+            <label for="tipoAveria">Tipo de Avería:</label>
+            <select id="tipoAveria" name="tipoAveria" required>
+                <option value="">Seleccione...</option>
+                <option value="corte-electrico">Corte de energía</option>
+                <option value="falla-poste">Falla en poste</option>
+                <option value="otro">Otro</option>
+            </select>
+            
+            <label for="descripcion">Descripción de la Avería:</label>
+            <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+            
+            <button type="submit">Enviar Reporte</button>
+        </form>
+    </div>
+
+    <script>
+        // Función para auto-llenar campos con datos de ejemplo
+        function autoFill() {
+            document.getElementById('nombre').value = 'Juan';
+            document.getElementById('apellido').value = 'Pérez';
+            document.getElementById('direccion').value = 'Calle Ficticia 123, Buenos Aires';
+            document.getElementById('telefono').value = '011-1234-5678';
+            document.getElementById('tipoAveria').value = 'corte-electrico';
+            document.getElementById('descripcion').value = 'No hay luz en toda la cuadra desde hace 2 horas.';
+        }
+        
+        // Función para enviar automáticamente (con validación básica)
+        function autoSubmit() {
+            const form = document.getElementById('reportForm');
+            if (form.checkValidity()) {
+                // Simula envío (en producción, envía a un servidor)
+                alert('Formulario enviado automáticamente. ¡Gracias por reportar!');
+                form.reset();
+            } else {
+                alert('Por favor, complete todos los campos.');
+            }
+        }
+        
+        // Validación al enviar manualmente
+        document.getElementById('reportForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (this.checkValidity()) {
+                alert('Formulario enviado. ¡Gracias por reportar!');
+                this.reset();
+            } else {
+                alert('Por favor, complete todos los campos.');
+            }
+        });
+    </script>
+</body>
+</html>
